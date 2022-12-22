@@ -148,15 +148,15 @@ public class MenuController {
 
     @PostMapping("/tea-card-save")
     public String saveTea(@RequestParam(name = "id", defaultValue = "0") Long id, @RequestParam("name") String name, @RequestParam("description") String description,
-                               @RequestParam("value") String value, @RequestParam("price") Double price, @RequestParam("image") MultipartFile file) throws IOException {
+                          @RequestParam("sValue") String sValue, @RequestParam("sPrice") Double sPrice, @RequestParam("image") MultipartFile file) throws IOException {
         Tea tea = new Tea();
         Tea oldTea = new Tea();
         if (id>0) { tea.setId(id);
             oldTea = teaService.findById(id);}
         tea.setName(name);
         tea.setDescription(description);
-        tea.setValue(value);
-        tea.setPrice(price);
+        tea.setSValue(sValue);
+        tea.setSPrice(sPrice);
         //            сохранение  фото
         if (!(Files.exists(Path.of(uploadPath + "/img/tea/"))))
             Files.createDirectories(Path.of(uploadPath + "/img/tea/"));
@@ -216,15 +216,15 @@ public class MenuController {
 
     @PostMapping("/snack-card-save")
     public String saveSnack(@RequestParam(name = "id", defaultValue = "0") Long id, @RequestParam("name") String name, @RequestParam("description") String description,
-                               @RequestParam("value") String value, @RequestParam("price") Double price, @RequestParam("image") MultipartFile file) throws IOException {
+                            @RequestParam("sValue") String sValue, @RequestParam("sPrice") Double sPrice, @RequestParam("image") MultipartFile file) throws IOException {
         Snack snack = new Snack();
         Snack oldSnack = new Snack();
         if (id>0) { snack.setId(id);
             oldSnack = snackService.findById(id);}
         snack.setName(name);
         snack.setDescription(description);
-        snack.setValue(value);
-        snack.setPrice(price);
+        snack.setSValue(sValue);
+        snack.setSPrice(sPrice);
         //            сохранение  фото
         if (!(Files.exists(Path.of(uploadPath + "/img/snack/"))))
             Files.createDirectories(Path.of(uploadPath + "/img/snack/"));
@@ -284,15 +284,15 @@ public class MenuController {
 
     @PostMapping("/dessert-card-save")
     public String saveDessert(@RequestParam(name = "id", defaultValue = "0") Long id, @RequestParam("name") String name, @RequestParam("description") String description,
-                            @RequestParam("value") String value, @RequestParam("price") Double price, @RequestParam("image") MultipartFile file) throws IOException {
+                              @RequestParam("sValue") String sValue, @RequestParam("sPrice") Double sPrice, @RequestParam("image") MultipartFile file) throws IOException {
         Dessert dessert = new Dessert();
         Dessert oldDessert = new Dessert();
         if (id>0) { dessert.setId(id);
             oldDessert = dessertService.findById(id);}
         dessert.setName(name);
         dessert.setDescription(description);
-        dessert.setValue(value);
-        dessert.setPrice(price);
+        dessert.setSValue(sValue);
+        dessert.setSPrice(sPrice);
         //            сохранение  фото
         if (!(Files.exists(Path.of(uploadPath + "/img/dessert/"))))
             Files.createDirectories(Path.of(uploadPath + "/img/dessert/"));
@@ -352,15 +352,15 @@ public class MenuController {
 
     @PostMapping("/sandwich-card-save")
     public String saveSandwich(@RequestParam(name = "id", defaultValue = "0") Long id, @RequestParam("name") String name, @RequestParam("description") String description,
-                              @RequestParam("value") String value, @RequestParam("price") Double price, @RequestParam("image") MultipartFile file) throws IOException {
+                               @RequestParam("sValue") String sValue, @RequestParam("sPrice") Double sPrice, @RequestParam("image") MultipartFile file) throws IOException {
         Sandwich sandwich = new Sandwich();
         Sandwich oldSandwich = new Sandwich();
         if (id>0) { sandwich.setId(id);
             oldSandwich = sandwichService.findById(id);}
         sandwich.setName(name);
         sandwich.setDescription(description);
-        sandwich.setValue(value);
-        sandwich.setPrice(price);
+        sandwich.setSValue(sValue);
+        sandwich.setSPrice(sPrice);
         //            сохранение  фото
         if (!(Files.exists(Path.of(uploadPath + "/img/sandwich/"))))
             Files.createDirectories(Path.of(uploadPath + "/img/sandwich/"));

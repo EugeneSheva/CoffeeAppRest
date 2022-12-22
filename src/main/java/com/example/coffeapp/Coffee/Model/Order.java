@@ -1,6 +1,5 @@
 package com.example.coffeapp.Coffee.Model;
 
-import com.example.coffeapp.Coffee.Model.Product.Products;
 import lombok.Data;
 
 
@@ -19,7 +18,7 @@ public class Order {
     @JoinColumn (name = "locationId")
     Location location;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "orderId")
-    List<Products> productList;
+//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//    @JoinColumn(name = "orderId")
+//    List<Products> productList;
 }

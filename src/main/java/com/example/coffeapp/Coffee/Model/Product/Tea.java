@@ -7,14 +7,14 @@ import javax.persistence.*;
 
 @Data
 @Entity
-public class Tea implements Products{
+public class Tea{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     String name;
     String description;
     String image;
-    String value;
-    Double price;
+    String sValue;
+    Double sPrice;
 
 }

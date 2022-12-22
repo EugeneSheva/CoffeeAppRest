@@ -10,7 +10,7 @@ import java.util.List;
 
 @Data
 @Entity
-public class Coffee implements Products {
+public class Coffee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
