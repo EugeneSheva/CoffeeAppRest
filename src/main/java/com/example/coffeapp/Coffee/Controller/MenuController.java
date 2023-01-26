@@ -1,7 +1,7 @@
 package com.example.coffeapp.Coffee.Controller;
 
 import com.example.coffeapp.Coffee.Model.Additives.CoffeeAdditive;
-import com.example.coffeapp.Coffee.Model.Additives.Type;
+import com.example.coffeapp.Coffee.Model.Additives.CoffeeAdditiveType;
 import com.example.coffeapp.Coffee.Model.Product.*;
 import com.example.coffeapp.Coffee.Service.*;
 import lombok.RequiredArgsConstructor;
@@ -16,12 +16,14 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
+@RequestMapping("/menu/")
 public class MenuController {
     @Value("${upload.path}")
     private String uploadPath;
@@ -38,7 +40,9 @@ public class MenuController {
         return "/Admin/Menu/admin-menu";
     }
 
+
     //Coffee
+
 
     @GetMapping("coffee-list")
     public String getCoffeeList(Model model) {
@@ -89,6 +93,19 @@ public class MenuController {
         coffee.setLPrice(lPrice);
         coffee.setXlValue(xlValue);
         coffee.setXlPrice(xlPrice);
+        String[] tmp = new String[4];
+        int i=0;
+        if (sPrice>0 && sPrice!=null && sValue!=null)
+            tmp[i] = "S"; i++;
+        if (mPrice>0 && mPrice!=null && mValue!=null)
+            tmp[i] = "M"; i++;
+        if (lPrice>0 && lPrice!=null && lValue!=null)
+            tmp[i] = "L"; i++;
+        if (xlPrice>0 && xlPrice!=null && xlValue!=null)
+            tmp[i] = "XL"; i++;
+
+        coffee.setSizes(tmp);
+
         //            сохранение  фото
         if (!(Files.exists(Path.of(uploadPath + "/img/coffee/"))))
             Files.createDirectories(Path.of(uploadPath + "/img/coffee/"));
@@ -393,29 +410,29 @@ public class MenuController {
         List<CoffeeAdditive> coffeeAdditiveList = coffeeAdditivesService.findAll();
         if (id.equalsIgnoreCase("SYRUPS")) {
             List<CoffeeAdditive>productList = coffeeAdditiveList.stream().
-                            filter(coffeeAdditive -> coffeeAdditive.getType().
-                            equals(Type.SYRUPS)).collect(Collectors.toList());
+                            filter(coffeeAdditive -> coffeeAdditive.getCoffeeAdditiveType().
+                            equals(CoffeeAdditiveType.SYRUP)).collect(Collectors.toList());
             System.out.println(productList);
             model.addAttribute("productList", productList);
             model.addAttribute("type", "SYRUPS");
         } else if (id.equalsIgnoreCase("ALCOHOL")) {
             List<CoffeeAdditive>productList = coffeeAdditiveList.stream().
-                    filter(coffeeAdditive -> coffeeAdditive.getType().
-                            equals(Type.ALCOHOL)).collect(Collectors.toList());
+                    filter(coffeeAdditive -> coffeeAdditive.getCoffeeAdditiveType().
+                            equals(CoffeeAdditiveType.ALCOHOL)).collect(Collectors.toList());
             System.out.println(productList);
             model.addAttribute("productList", productList);
             model.addAttribute("type", "ALCOHOL");
         } else if (id.equalsIgnoreCase("MILK")) {
             List<CoffeeAdditive>productList = coffeeAdditiveList.stream().
-                    filter(coffeeAdditive -> coffeeAdditive.getType().
-                            equals(Type.MILK)).collect(Collectors.toList());
+                    filter(coffeeAdditive -> coffeeAdditive.getCoffeeAdditiveType().
+                            equals(CoffeeAdditiveType.MILK)).collect(Collectors.toList());
             System.out.println(productList);
             model.addAttribute("productList", productList);
             model.addAttribute("type", "MILK");
         } else if (id.equalsIgnoreCase("ADD")) {
             List<CoffeeAdditive>productList = coffeeAdditiveList.stream().
-                    filter(coffeeAdditive -> coffeeAdditive.getType().
-                            equals(Type.ADD)).collect(Collectors.toList());
+                    filter(coffeeAdditive -> coffeeAdditive.getCoffeeAdditiveType().
+                            equals(CoffeeAdditiveType.ADD)).collect(Collectors.toList());
             System.out.println(productList);
             model.addAttribute("productList", productList);
             model.addAttribute("type", "ADD");

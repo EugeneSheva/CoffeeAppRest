@@ -1,17 +1,22 @@
 package com.example.coffeapp.Coffee.Service;
 
 import com.example.coffeapp.Coffee.Model.Users.User;
+import com.example.coffeapp.Coffee.Model.Users.UserDetailsImpl;
 import com.example.coffeapp.Coffee.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
-@Service
+@Service("userService")
 @RequiredArgsConstructor
-public class UserService {
+public class UserService{
 
     private final UserRepository userRepository;
 
@@ -32,11 +37,7 @@ public class UserService {
 
     public void deleteById(Long id) { userRepository.deleteById(id); }
 
-
-
-
-
-
+    public User findByUserName(String username) { return userRepository.findByUsername(username); }
 
 
 }

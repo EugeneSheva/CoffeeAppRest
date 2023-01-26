@@ -1,7 +1,6 @@
 package com.example.coffeapp.Coffee.Repository;
 
 import com.example.coffeapp.Coffee.Model.Users.User;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,4 +14,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Override
     List<User> findAllById(Iterable<Long> idusers);
+
+    User findByUsername(String username);
 }
