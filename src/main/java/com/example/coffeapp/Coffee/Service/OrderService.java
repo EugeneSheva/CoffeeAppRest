@@ -21,4 +21,6 @@ public class OrderService {
     public Order save(Order order) { return orderRepository.save(order); }
 
     public void deleteById(Long id) { orderRepository.deleteById(id); }
+
+    public List<Order>findOrdersByUser_Id(Long id) {return orderRepository.findOrdersByUser_Id(id);}
 }

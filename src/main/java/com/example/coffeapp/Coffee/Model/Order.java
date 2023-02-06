@@ -34,7 +34,7 @@ public class Order {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     Date dateOfOrder;
 
-    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn (name = "userId")
     User user;
     @ManyToOne(fetch = FetchType.EAGER)

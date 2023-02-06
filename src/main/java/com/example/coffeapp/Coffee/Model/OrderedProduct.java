@@ -31,9 +31,9 @@ public class OrderedProduct {
         String size;
         Double price;
 
-        @ManyToOne(fetch = FetchType.EAGER)
-        @JoinColumn (name = "orderId")
-        Order order;
+//        @ManyToOne(fetch = FetchType.EAGER)
+//        @JoinColumn (name = "orderId")
+//        Order orderOP;
 
         public String getAdditivesNames() {
                 String names = "";

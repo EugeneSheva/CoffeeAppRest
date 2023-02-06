@@ -1,5 +1,6 @@
 package com.example.coffeapp.Coffee.Model.Users;
 
+import com.example.coffeapp.Coffee.Model.Order;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
@@ -42,19 +43,8 @@ public class User{
      return authorities;
     }
 
-
-
-//    @OneToMany
-//    @JoinColumn(name="username")
-//    List<Authorities> authorities;
-
-
-
-//    @OneToMany
-//    @JoinColumn(name = "userId")
+//    @OneToMany(mappedBy = "user")
 //    List<Order> orderList = new ArrayList<>();
-//
-//    public void addOrder(Order order) {
-//        this.orderList.add(order);
-//    }
+
+
 }
