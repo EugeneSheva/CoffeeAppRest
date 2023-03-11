@@ -27,8 +27,7 @@ jobs:
             cd /home/avada/web/kino.avada-media-dev1.od.ua/tomcat/webapps/
             rm -rf CoffeeAppRest.war
             rm -rf CoffeeAppRest
-            mkdir test110323
-#            cp workspace/target/*.war CoffeeAppRest.war
+            cp /target/*.war CoffeeAppRest.war
 
 
 
