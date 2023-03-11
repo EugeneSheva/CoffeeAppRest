@@ -27,7 +27,7 @@ jobs:
             cd /home/avada/web/kino.avada-media-dev1.od.ua/tomcat/webapps/
             rm -rf CoffeeAppRest.war
             rm -rf CoffeeAppRest
-            cp ~/github/workflows/target/*.war CoffeeAppRest.war
+            cp github/workflows/target/*.war CoffeeAppRest.war
 
 
 
