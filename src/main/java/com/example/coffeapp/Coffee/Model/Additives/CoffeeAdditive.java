@@ -1,12 +1,8 @@
 package com.example.coffeapp.Coffee.Model.Additives;
 
-import com.example.coffeapp.Coffee.Model.Location;
-import com.example.coffeapp.Coffee.Model.OrderedProduct;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.List;
-
 
 
 @Entity

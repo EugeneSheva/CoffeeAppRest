@@ -1,6 +1,6 @@
 package com.example.coffeapp.Coffee.Service;
 
-import com.example.coffeapp.Coffee.Model.OrderedProduct;
+import com.example.coffeapp.Coffee.Model.Order.OrderedProduct;
 import com.example.coffeapp.Coffee.Repository.OrderedProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

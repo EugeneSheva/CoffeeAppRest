@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -14,7 +15,7 @@ public class CoffeeAdditivesService {
     private final CoffeeAdditivesRepository coffeeAdditivesRepository;
 
 
-    public CoffeeAdditive findById (Long id) { return coffeeAdditivesRepository.getReferenceById(id); }
+    public Optional<CoffeeAdditive> findById (Long id) { return coffeeAdditivesRepository.findById(id); }
 
     public List<CoffeeAdditive> findAll() { return coffeeAdditivesRepository.findAll(); }
 

@@ -1,6 +1,6 @@
 package com.example.coffeapp.Coffee.Model.Users;
 
-import com.example.coffeapp.Coffee.Model.Order;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
@@ -33,9 +33,8 @@ public class User{
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateOfRegistry;
-
     private String language;
-
+    @JsonIgnore
     public List getRolesList() {
         List<GrantedAuthority> authorities = Arrays.stream(this.role.split(","))
                 .map(SimpleGrantedAuthority::new)

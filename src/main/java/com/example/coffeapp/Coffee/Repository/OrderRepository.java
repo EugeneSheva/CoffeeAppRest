@@ -1,11 +1,8 @@
 package com.example.coffeapp.Coffee.Repository;
 
 
-import com.example.coffeapp.Coffee.Model.Order;
-import com.example.coffeapp.Coffee.Model.Users.User;
+import com.example.coffeapp.Coffee.Model.Order.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 

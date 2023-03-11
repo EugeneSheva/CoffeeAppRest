@@ -1,16 +1,17 @@
 package com.example.coffeapp.Coffee.configuration;
-
 import com.example.coffeapp.Coffee.Security.JwtRequestFilter;
 import com.example.coffeapp.Coffee.Service.MyUserDetailService;
+import com.example.coffeapp.Coffee.Service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -20,10 +21,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private MyUserDetailService myUserDetailService;
     @Autowired
     private JwtRequestFilter jwtRequestFilter;
+    @Autowired
+    private UserDetailsServiceImpl userDetailsServiceImpl;
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(myUserDetailService);
+        auth.authenticationProvider(daoAuthenticationProvider());
     }
 
     @Override
@@ -32,6 +35,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/api/authenticate").permitAll()
                 .antMatchers("/api/registration").permitAll()
+                .antMatchers("/swagger-ui/**", "/javainuse-openapi/**","/swagger-resources/**",
+                        "/swagger-ui.html", "/v2/api-docs","/webjars/**").permitAll()
                 .anyRequest().authenticated()
                 .and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -50,6 +55,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder() { return NoOpPasswordEncoder.getInstance();
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder(12);
+    }
+
+    @Bean
+    protected DaoAuthenticationProvider daoAuthenticationProvider(){
+        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
+        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
+        daoAuthenticationProvider.setUserDetailsService(myUserDetailService);
+        return  daoAuthenticationProvider;
     }
 }
